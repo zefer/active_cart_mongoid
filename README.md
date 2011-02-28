@@ -2,6 +2,8 @@
 
 Mongoid storage bolt-on for the [active_cart](http://github.com/madpilot/active_cart) gem
 
+A work-in-progress, any contribution very welcome!
+
 == Contributing to active_cart_mongoid
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
