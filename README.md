@@ -5,6 +5,13 @@ Mongoid storage bolt-on for the [active_cart](http://github.com/madpilot/active_
 
 A work-in-progress, any contribution very welcome!
 
+Usage
+=====
+
+	include ActiveCart
+	c = Cart.new(ActiveCart::StorageEngines::MongoidStorage.new)
+	c.add_to_cart(ActiveCart::Items::MongoidItem.new({:name=>"Test Item", :price=>10}))
+
 Contributing to active_cart_mongoid
 ===================================
  
