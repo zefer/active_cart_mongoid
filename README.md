@@ -1,6 +1,6 @@
 = active_cart_mongoid
 
-Description goes here.
+Mongoid storage bolt-on for the [active_cart](http://github.com/madpilot/active_cart) gem
 
 == Contributing to active_cart_mongoid
  
