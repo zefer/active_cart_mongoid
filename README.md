@@ -7,10 +7,24 @@ A work-in-progress, any contribution very welcome!
 
 Usage
 =====
+	
+Mixin the MongoidItem into your product class, e.g:
+
+	class Product
+	  include Mongoid::Document
+	  include Mongoid::Timestamps
+
+	  include ActiveCart::Items::MongoidItem
+
+	  field :description, :type => String
+	end
+
+Then your product can be serialised to a basket
 
 	include ActiveCart
 	c = Cart.new(ActiveCart::StorageEngines::MongoidStorage.new)
-	c.add_to_cart(ActiveCart::Items::MongoidItem.new({:name=>"Test Item", :price=>10}))
+	i = Product.new # this should be a class which mixes-in the ActiveCart::Items::MongoidItem module
+	c.add_to_cart(i)
 
 Contributing to active_cart_mongoid
 ===================================
