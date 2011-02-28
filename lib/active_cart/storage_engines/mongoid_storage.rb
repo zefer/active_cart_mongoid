@@ -21,8 +21,14 @@ module ActiveCart
         add_to_cart_without_save(item, quantity, options)
         self.save!
       end
-      
       alias_method_chain :add_to_cart, :save
+      
+      # write the basket to mongo after removing from the cart
+      def remove_from_cart_with_save(item, quantity = 1, options = {})
+        remove_from_cart_without_save(item, quantity, options)
+        self.save!
+      end
+      alias_method_chain :remove_from_cart, :save
       
     end
     
