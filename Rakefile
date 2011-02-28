@@ -15,14 +15,17 @@ Jeweler::Tasks.new do |gem|
   gem.name = "active_cart_mongoid"
   gem.homepage = "http://github.com/zefer/active_cart_mongoid"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "Mongoid storage bolt-on for the active_cart gem"
+  gem.description = "Allows you to persist your active_cart using Mongoid"
   gem.email = "joe@zefer.co.uk"
   gem.authors = ["Joe Roberts"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
   #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.add_dependency 'mongoid'
+  gem.add_dependency 'bson_ext'
+  gem.add_dependency 'active_cart'
 end
 Jeweler::RubygemsDotOrgTasks.new
 
