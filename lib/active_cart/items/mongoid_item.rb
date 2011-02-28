@@ -9,14 +9,7 @@ module ActiveCart
       
       field :name
       field :price
-      
-      def quantity
-        @quantity || 0
-      end
-      
-      def quantity=(quantity)
-        @quantity = quantity
-      end
+      field :quantity, :type => Integer, :default => 0
       
     end
     
