@@ -2,18 +2,22 @@ module ActiveCart
   module Items
     
     class MongoidItem
-      attr_accessor :id, :name, :price
-      include ActiveCart::Item
-
-      def ==(item)
-        self._id == item.id
+      include Mongoid::Document
+      include Mongoid::Timestamps
+      
+      embedded_in :cart, :class_name => "ActiveCart::StorageEngines::MongoidStorage", :inverse_of => :items
+      
+      field :name
+      field :price
+      
+      def quantity
+        @quantity || 0
       end
       
-      def initialize(id, name, price)
-        @id = id
-        @name = name
-        @price = price
+      def quantity=(quantity)
+        @quantity = quantity
       end
+      
     end
     
   end
