@@ -11,6 +11,11 @@ module ActiveCart
       def invoice_id
          self._id
       end
+      
+      # delegate that these item 'lookup' methods are called on the :items collection
+      extend Forwardable
+      def_delegators :items, :include?, :<<, :inject, :index, :at, :delete_at
+      
     end
     
   end
