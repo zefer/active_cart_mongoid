@@ -16,6 +16,14 @@ module ActiveCart
       extend Forwardable
       def_delegators :items, :[], :<<, :[]=, :at, :clear, :collect, :map, :delete, :delete_at, :each, :each_index, :empty?, :eql?, :first, :include?, :index, :inject, :last, :length, :pop, :push, :shift, :size, :unshift
       
+      # write the basket to mongo after adding to the cart
+      def add_to_cart_with_save(item, quantity = 1, options = {})
+        add_to_cart_without_save(item, quantity, options)
+        self.save!
+      end
+      
+      alias_method_chain :add_to_cart, :save
+      
     end
     
   end
