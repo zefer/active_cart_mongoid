@@ -17,7 +17,13 @@ Mixin the MongoidItem into your product class, e.g:
 	  include ActiveCart::Items::MongoidItem
 
 	  field :description, :type => String
+	
+	  def price
+		1000
+	  end
 	end
+	
+Ensure that your class defines the 'price' method. This should return the price as it will be serialised in the basket collection. See above example.
 
 Then your product can be serialised to a basket
 
