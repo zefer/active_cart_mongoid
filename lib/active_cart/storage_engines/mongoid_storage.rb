@@ -3,6 +3,7 @@ module ActiveCart
     
     class MongoidStorage
       include Mongoid::Document
+      store_in :carts
       include Mongoid::Timestamps
       include ActiveCart::CartStorage
       
