@@ -14,7 +14,7 @@ module ActiveCart
       
       # delegate that these item 'lookup' methods are called on the :items collection
       extend Forwardable
-      def_delegators :items, :include?, :<<, :inject, :index, :at, :delete_at
+      def_delegators :items, :[], :<<, :[]=, :at, :clear, :collect, :map, :delete, :delete_at, :each, :each_index, :empty?, :eql?, :first, :include?, :index, :inject, :last, :length, :pop, :push, :shift, :size, :unshift
       
     end
     
