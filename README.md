@@ -25,10 +25,17 @@ Mixin the MongoidItem into your product class, e.g:
 	
 Ensure that your class defines the 'price' method. This should return the price as it will be serialised in the basket collection. See above example.
 
+Extend the ActiveCart::StorageEngines::MongoidStorage class with a concrete Cart / Basket (or whatever you want to call it) class, e.g.:
+
+	class ShoppingBasket < ActiveCart::StorageEngines::MongoidStorage
+	  # you must define the mongoid association to model the cart contents, e.g:
+	  embeds_many :items, :class_name => "Product"
+	end
+
 Then your product can be serialised to a basket
 
 	include ActiveCart
-	c = Cart.new(ActiveCart::StorageEngines::MongoidStorage.new)
+	c = Cart.new(ShoppingBasket.new)
 	i = Product.new # this should be a class which mixes-in the ActiveCart::Items::MongoidItem module
 	c.add_to_cart(i)
 
