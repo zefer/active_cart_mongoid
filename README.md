@@ -8,37 +8,45 @@ A work-in-progress, any contribution very welcome!
 Usage
 =====
 	
-Mixin the MongoidItem into your product class, e.g:
+Mixin the MongoidItem into your CartItem (or similar) class, e.g:
 
-	class Product
+	class CartItem
 	  include Mongoid::Document
-	  include Mongoid::Timestamps
-
 	  include ActiveCart::Items::MongoidItem
 
-	  field :description, :type => String
+	  # a cart item will always contain a product
+	  embeds_one :product
+	  embedded_in :ShoppingCart, :inverse_of => :items
+	  
+	  # you need to override the construtor to ensure the cart item's ID represents the product's ID. otherwise, the cart will always think you are adding a different product and will never increment quantity.
+	  def initialize(product)
+	    attrs = {
+	      :id => product.id,
+	      :product => product
+	    }
+	    super(attrs)
+	  end
 	
+	  # this should return the price as it will be serialised in the basket collection, e.g. pence/cents
 	  def price
-		1000
+		product.price
 	  end
 	end
 	
-Ensure that your class defines the 'price' method. This should return the price as it will be serialised in the basket collection. See above example.
-
 Extend the ActiveCart::StorageEngines::MongoidStorage class with a concrete Cart / Basket (or whatever you want to call it) class, e.g.:
 
-	class ShoppingBasket < ActiveCart::StorageEngines::MongoidStorage
+	class ShoppingCart < ActiveCart::StorageEngines::MongoidStorage
 	  # you must define the mongoid association to model the cart contents, e.g:
 	  embeds_many :items, :class_name => "Product"
 	  # optionally change which collection the carts are stored
 	  store_in :shopping_baskets
 	end
 
-Then your product can be serialised to a basket
+Then your cart items can be serialised to a basket
 
 	include ActiveCart
-	c = Cart.new(ShoppingBasket.new)
-	i = Product.new # this should be a class which mixes-in the ActiveCart::Items::MongoidItem module
+	c = Cart.new(ShoppingCart.new)
+	i = CartItem.new(Product.first)
 	c.add_to_cart(i)
 
 Contributing to active_cart_mongoid
