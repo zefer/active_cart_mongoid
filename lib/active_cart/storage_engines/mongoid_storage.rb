@@ -4,7 +4,6 @@ module ActiveCart
     # extend this class with a concrete Cart/Basket class. Make sure you define the embeds_many :items in your concrete class (see below)
     class MongoidStorage
       include Mongoid::Document
-      # store_in :carts
       include Mongoid::Timestamps
       include ActiveCart::CartStorage
       

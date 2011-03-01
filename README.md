@@ -30,6 +30,8 @@ Extend the ActiveCart::StorageEngines::MongoidStorage class with a concrete Cart
 	class ShoppingBasket < ActiveCart::StorageEngines::MongoidStorage
 	  # you must define the mongoid association to model the cart contents, e.g:
 	  embeds_many :items, :class_name => "Product"
+	  # optionally change which collection the carts are stored
+	  store_in :shopping_baskets
 	end
 
 Then your product can be serialised to a basket
