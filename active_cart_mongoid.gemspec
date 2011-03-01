@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Joe Roberts"]
-  s.date = %q{2011-02-28}
+  s.date = %q{2011-03-01}
   s.description = %q{Allows you to persist your active_cart using Mongoid}
   s.email = %q{joe@zefer.co.uk}
   s.extra_rdoc_files = [
@@ -24,9 +24,10 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
-    "lib/active_cart_mongoid.rb",
-    "lib/items/mongoid_item.rb",
-    "lib/storage_engines/mongoid_storage.rb"
+    "active_cart_mongoid.gemspec",
+    "lib/active_cart/items/mongoid_item.rb",
+    "lib/active_cart/storage_engines/mongoid_storage.rb",
+    "lib/active_cart_mongoid.rb"
   ]
   s.homepage = %q{http://github.com/zefer/active_cart_mongoid}
   s.licenses = ["MIT"]
