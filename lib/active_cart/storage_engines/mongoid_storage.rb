@@ -17,20 +17,17 @@ module ActiveCart
       # delegate that these item 'lookup' methods are called on the :items collection
       extend Forwardable
       def_delegators :items, :[], :<<, :[]=, :at, :clear, :collect, :map, :delete, :delete_at, :each, :each_index, :empty?, :eql?, :first, :include?, :index, :inject, :last, :length, :pop, :push, :shift, :size, :unshift
+      def_delegators :storage_engine, :items
       
       # write the basket to mongo after adding to the cart
-      def add_to_cart_with_save(item, quantity = 1, options = {})
-        add_to_cart_without_save(item, quantity, options)
+      def after_add_to_cart(item, quantity, options)
         self.save!
       end
-      alias_method_chain :add_to_cart, :save
       
       # write the basket to mongo after removing from the cart
-      def remove_from_cart_with_save(item, quantity = 1, options = {})
-        remove_from_cart_without_save(item, quantity, options)
+      def after_remove_from_cart(item, quantity, options)
         self.save!
       end
-      alias_method_chain :remove_from_cart, :save
       
     end
     
