@@ -16,7 +16,7 @@ module ActiveCart
       
       # delegate that these item 'lookup' methods are called on the :items collection
       extend Forwardable
-      def_delegators :items, :[], :<<, :[]=, :at, :clear, :collect, :map, :delete, :delete_at, :each, :each_index, :empty?, :eql?, :first, :include?, :index, :inject, :last, :length, :pop, :push, :shift, :size, :unshift
+      def_delegators :items, :[], :<<, :[]=, :at, :clear, :collect, :map, :delete, :delete_at, :each, :each_index, :eql?, :first, :include?, :index, :inject, :last, :length, :pop, :push, :shift, :size, :unshift
       def_delegators :storage_engine, :items
       
       # write the basket to mongo after adding to the cart
