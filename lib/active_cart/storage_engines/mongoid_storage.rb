@@ -29,6 +29,12 @@ module ActiveCart
         self.save!
       end
       
+      # ensure the embedded item is removed from mongoid when deleting an item
+      def delete_at_with_destroy(index)
+        self.items[index].destroy
+      end
+      alias_method_chain :delete_at, :destroy
+      
     end
     
   end
