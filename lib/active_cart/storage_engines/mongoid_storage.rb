@@ -10,6 +10,9 @@ module ActiveCart
       # embeds_many MUST be defined in your concrete class, to define the basket items - this may be a Product class, or a LineItem class, for example
       # embeds_many :items, :class_name => "Product"
       
+      field :status, :type => String, :default => 'shopping'
+      aasm_column :status
+      
       def invoice_id
          self._id
       end
